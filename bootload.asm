@@ -9,6 +9,10 @@ start:
 	mov ax, 07C0h		; Set data segment to where we're loaded
 	mov ds, ax
 
+	mov ah, 0Bh
+	mov bh, 00h
+	mov bl, 00000001b
+	int 10h
 
 	mov si, text_string	; Put string position into SI
 	call print_string	; Call our string-printing routine

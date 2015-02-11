@@ -16,13 +16,18 @@ start:
 
 	call clear_screen
 	
+	mov si, text_border	; Put border position into SI
+	call print_string	; Call our string-printing routine
 	mov si, text_string	; Put string position into SI
 	call print_string	; Call our string-printing routine
-
+	mov si, text_border	; Put border position into SI
+	call print_string	; Call our string-printing routine
+	
 	jmp $			; Jump here - infinite loop!
 
 
-	text_string db 'This is my cool new OS!', 0
+	text_string db 'This is my cool new OS!', 10, 13, 0
+	text_border db '--------------------------------------------------------------------------------', 0
 
 clear_screen:
 	pusha
@@ -41,6 +46,9 @@ clear_screen:
 	int 10h
 	
 	popa
+	ret
+	
+.done:
 	ret
 	
 print_string:			; Routine: output string in SI to screen

@@ -9,11 +9,13 @@ start:
 	mov ax, 07C0h		; Set data segment to where we're loaded
 	mov ds, ax
 
-	mov ah, 0Bh
+	mov ah, 0Bh			; White text on blue background
 	mov bh, 00h
 	mov bl, 00000001b
 	int 10h
 
+	call clear_screen
+	
 	mov si, text_string	; Put string position into SI
 	call print_string	; Call our string-printing routine
 
@@ -22,7 +24,25 @@ start:
 
 	text_string db 'This is my cool new OS!', 0
 
-
+clear_screen:
+	pusha
+	
+	mov dx, 0	; Move cursor to top left of screen (TTY mode of course)
+	mov bh, 0
+	mov ah, 2
+	int 10h
+	
+	mov ah, 6	; Int10h scroll function- used to clear screen
+	mov al, 0 
+	mov bh, 7
+	mov cx, 0
+	mov dh, 24
+	mov dl, 79
+	int 10h
+	
+	popa
+	ret
+	
 print_string:			; Routine: output string in SI to screen
 	mov ah, 0Eh		; int 10h 'print char' function
 

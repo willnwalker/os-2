@@ -1,3 +1,9 @@
+;====================================================================================================
+
+;Copyright ©2015 T-DOS Developers
+
+;====================================================================================================
+	
 	BITS 16
 
 start:
@@ -7,14 +13,14 @@ start:
 	mov sp, 4096
 
 	mov ax, 07C0h		; Set data segment to where we're loaded
-	mov ds, ax
+	mov ds, ax			; Moving data segment to DS, using ax register
 
-	mov ah, 0Bh			; White text on blue background
+	mov ah, 0Bh			; Set background: white text on blue background
 	mov bh, 00h
 	mov bl, 00000001b
 	int 10h
 
-	call clear_screen
+	call clear_screen	; Giving us a blank canvas!
 	
 	mov si, text_border	; Put border position into SI
 	call print_string	; Call our string-printing routine
@@ -26,8 +32,12 @@ start:
 	jmp $			; Jump here - infinite loop!
 
 
-	text_string db 'This is my cool new OS!', 10, 13, 0
+	text_string db 'T-DOS 0.1', 10, 13, 0
 	text_border db '--------------------------------------------------------------------------------', 0
+
+;====================================================================================================
+; SYSTEM CALLS	
+;====================================================================================================
 
 clear_screen:
 	pusha
@@ -51,7 +61,10 @@ clear_screen:
 .done:
 	ret
 	
-print_string:			; Routine: output string in SI to screen
+;====================================================================================================	
+	
+print_string:		; Routine: output string in SI to screen
+	pusha
 	mov ah, 0Eh		; int 10h 'print char' function
 
 .repeat:
@@ -62,8 +75,44 @@ print_string:			; Routine: output string in SI to screen
 	jmp .repeat
 
 .done:
+	popa
+	ret
+;====================================================================================================
+
+wait_key:
+	pusha
+	
+	mov ax, 0
+	mov ah, 10h
+	int 16h
+	
+	mov [.buf], ax
+	
+	popa
+	mov ax, [.buf]
+	ret
+	
+	.buf dw 0
+
+;====================================================================================================
+
+intput_string:
+	pusha
+
+;====================================================================================================
+; DH = row, 0-24
+; DL = column, 0-79
+move_cursor:
+	pusha
+	
+	mov bh, 0
+	mov ah, 2
+	int 10h
+	
+	popa
 	ret
 
-
+;====================================================================================================
+	
 	times 510-($-$$) db 0	; Pad remainder of boot sector with 0s
 	dw 0xAA55		; The standard PC boot signature

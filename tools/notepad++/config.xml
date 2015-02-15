@@ -86,7 +86,7 @@
         <GUIConfig name="ScintillaGlobalSettings" enableMultiSelection="no" />
         <GUIConfig name="openSaveDir" value="0" defaultDirPath="" />
         <GUIConfig name="titleBar" short="no" />
-        <GUIConfig name="stylerTheme" path="D:\tools\notepad++\stylers.xml" />
+        <GUIConfig name="stylerTheme" path="E:\tools\notepad++\stylers.xml" />
         <GUIConfig name="delimiterSelection" leftmostDelimiter="40" rightmostDelimiter="41" delimiterSelectionOnEntireDocument="no" />
         <GUIConfig name="MISC" fileSwitcherWithoutExtColumn="no" backSlashIsEscapeCharacterForSql="yes" />
         <GUIConfig name="DockingManager" leftWidth="200" rightWidth="200" topHeight="200" bottomHeight="200">
@@ -102,6 +102,7 @@
         <File filename="G:\src\bootload.asm" />
         <File filename="C:\Users\William\Desktop\os-1\source\features\screen.asm" />
         <File filename="D:\src\bootload.asm" />
+        <File filename="E:\src\bootload.asm" />
     </History>
     <ProjectPanels>
         <ProjectPanel id="0" workSpaceFile="" />

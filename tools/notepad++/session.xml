@@ -1,6 +1,9 @@
 <NotepadPlus>
     <Session activeView="0">
-        <mainView activeIndex="0" />
+        <mainView activeIndex="0">
+            <File firstVisibleLine="18" xOffset="0" scrollWidth="921" startPos="716" endPos="716" selMode="0" lang="Assembly" encoding="-1" filename="E:\src\bootload.asm" backupFilePath="E:\tools\notepad++\backup\bootload.asm@2015-02-14_222020" originalFileLastModifTimestamp="1423981194" />
+            <File firstVisibleLine="1116" xOffset="0" scrollWidth="696" startPos="1887" endPos="1717" selMode="0" lang="Assembly" encoding="-1" filename="C:\Users\William\Desktop\os-1\source\features\screen.asm" backupFilePath="" originalFileLastModifTimestamp="1423637108" />
+        </mainView>
         <subView activeIndex="0" />
     </Session>
 </NotepadPlus>
